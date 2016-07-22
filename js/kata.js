@@ -17,7 +17,7 @@ function maxNumber(number){
     var a = false;
   };
   return a;
-}
+};
 
 function createWorld(){
 	var rows = document.querySelector(".rows").value;
@@ -70,20 +70,71 @@ function activeCell(x,y){
     matrix[x][y] = 1;
   }else if(matrix[x][y] == 1){
     matrix[x][y] = 0;
-  }
+  };
   printMatrix(matrix);
 };
 
-function StartGame(matrix){
-  for (var i = 0; i < y; i++){
-    for (var j = 0; j < x; j++){
-      // send i, j to another function
+function startGame(matrix){
+  for (var i = 0; i < matrix.length; i++){
+    for (var j = 0; j < matrix[0].length; j++){
+      alert(i+","+j) //CHECK THE POSITION
+      alert(checkNeighbours(i,j))
     };
   };
 };
 
-function checkNeighbours(x,y){
-  //Continue here
-
-}
+function checkNeighbours(i,j){
+  var n = 0;
+  //LEFT
+  if (j - 1 >= 0){
+    if (matrix[i][j-1] == 1){
+      n += 1;
+    };
+  };
+  //RIGHT
+  if (j + 1 < matrix[0].length){
+    if (matrix[i][j+1] == 1){
+      n += 1; 
+    };
+  };
+  //TOP
+  if(i - 1 >= 0){
+    if(matrix[i-1][j] == 1){
+      n += 1;
+    };
+    var a = i-1;
+    //TOP-LEFT                    
+    if(j - 1 >= 0){
+      if(matrix[a][j-1] == 1){
+        n += 1;
+      };
+    };
+    //TOP-RIGHT
+    if(j + 1 < matrix[0].length){
+      if(matrix[a][j+1] == 1){
+        n += 1;
+      };
+    };
+  };
+  //LOWER
+  if(i + 1 < matrix.length){
+    if(matrix[i+1][j] == 1){
+      n += 1;
+    };
+    var b = i + 1;
+    //LOWER LEFT
+    if(j - 1 >= 0){
+      if(matrix[b][j-1] == 1){
+        n += 1;
+      };
+    };
+    //LOWER-RIGHT
+    if(j + 1 < matrix[0].length){
+      if(matrix[b][j+1] == 1){
+        n += 1;
+      };
+    };
+  };
+  return n;
+};
 
