@@ -1,9 +1,31 @@
 // You Dont Need Jquery ;D
 "use strict";
 
+function isNumber(evt) {
+  evt = (evt) ? evt : window.event;
+  var charCode = (evt.which) ? evt.which : evt.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57)){
+    return false;
+  };
+  return true;
+};
+
+function maxNumber(number){
+  if (number <= 25) {
+    var a = true;
+  }else{
+    var a = false;
+  };
+  return a;
+}
+
 function createWorld(){
 	var rows = document.querySelector(".rows").value;
 	var columns = document.querySelector(".columns").value;
+  if (maxNumber(rows) == false || maxNumber(columns) == false ){
+    alert("Max 25");
+    return false;
+  };
   createMatrix(rows,columns);
   return false; //PreventDefault
 };
@@ -42,3 +64,4 @@ function printMatrix(matrix){
   html += "</table>";
   document.querySelector(".world").innerHTML = html;
 };
+

@@ -9,8 +9,8 @@
 	<h1>KATA VERSION</h1>
 	<H2>Please enter your dimensions</H2>
 	<form action="">
-  	Columns: <input type="number" min="0" class="columns" step="1"><br>
- 		Rows: <input type="number" min="0" class="rows" step="1"><br>
+  	Columns: <input type="text" class="columns" onkeypress="return isNumber(event)"><br>
+ 		Rows: <input type="text" class="rows" onkeypress="return isNumber(event)"><br>
 		<input type="submit" value="Create World" onclick="return createWorld()">
 	</form>
 	<div class="world"></div>
