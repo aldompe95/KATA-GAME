@@ -3,7 +3,7 @@
 
 var active = true;
 
-function isNumber(evt) {
+function isNumber(evt){
   evt = (evt) ? evt : window.event;
   var charCode = (evt.which) ? evt.which : evt.keyCode;
   if (charCode > 31 && (charCode < 48 || charCode > 57)){
@@ -23,8 +23,8 @@ function maxNumber(number){
 
 function createWorld(){
   active = true;
-	var rows = document.querySelector(".rows").value;
-	var columns = document.querySelector(".columns").value;
+  var rows = document.querySelector(".rows").value;
+  var columns = document.querySelector(".columns").value;
   if (maxNumber(rows) == false || maxNumber(columns) == false ){
     alert("Max 25");
     return false;
@@ -87,9 +87,9 @@ function startGame(matrix){
       //alert(i+","+j) //CHECK POSITION
       //alert(checkNeighbours(i,j)) //CHECK VALUE
       var neighbours = checkNeighbours(i,j);
-      if(neighbours < 2){ mirror[i][j] = 0};
-      if(neighbours > 3){ mirror[i][j] = 0};
-      if(neighbours == 3){ mirror[i][j] = 1};    
+      if(neighbours < 2){mirror[i][j] = 0};
+      if(neighbours > 3){mirror[i][j] = 0};
+      if(neighbours == 3){mirror[i][j] = 1};    
     };
   };
   mirroring(mirror);
