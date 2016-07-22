@@ -1,6 +1,8 @@
 // You Dont Need Jquery ;D
 "use strict";
 
+var active = true;
+
 function isNumber(evt) {
   evt = (evt) ? evt : window.event;
   var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -20,6 +22,7 @@ function maxNumber(number){
 };
 
 function createWorld(){
+  active = true;
 	var rows = document.querySelector(".rows").value;
 	var columns = document.querySelector(".columns").value;
   if (maxNumber(rows) == false || maxNumber(columns) == false ){
@@ -53,9 +56,9 @@ function printMatrix(matrix){
     html += "<tr>";
     for (var j = 0; j < matrix[0].length; j++){
       if (matrix[i][j] == 0 ){
-        html += "<td class='cell' onclick='activeCell("+i+","+j+")'>" + matrix[i][j]+"</td>";
+        html += "<td class='cell' onclick='activeCell("+i+","+j+","+active+")'>" + matrix[i][j]+"</td>";
       }else if(matrix[i][j] == 1){
-        html += "<td class='cell active' onclick='activeCell("+i+","+j+")'>" + matrix[i][j]+"</td>";
+        html += "<td class='cell active' onclick='activeCell("+i+","+j+","+active+")'>" + matrix[i][j]+"</td>";
       };
       //html += "<td class='cell'>" + "matrix["+i+"]["+j+"]</td>"; Here you can check the position [?][?]
     };
@@ -65,22 +68,32 @@ function printMatrix(matrix){
   document.querySelector(".world").innerHTML = html;
 };
 
-function activeCell(x,y){
-  if (matrix[x][y] == 0){
-    matrix[x][y] = 1;
-  }else if(matrix[x][y] == 1){
-    matrix[x][y] = 0;
+function activeCell(x,y,active){
+  if(active == true){
+    if (matrix[x][y] == 0){
+      matrix[x][y] = 1;
+    }else if(matrix[x][y] == 1){
+      matrix[x][y] = 0;
+    };
+    printMatrix(matrix);
   };
-  printMatrix(matrix);
 };
 
 function startGame(matrix){
+  active = false; // You cant active cells anymore
   for (var i = 0; i < matrix.length; i++){
     for (var j = 0; j < matrix[0].length; j++){
-      alert(i+","+j) //CHECK THE POSITION
-      alert(checkNeighbours(i,j))
+      //alert(i+","+j) //CHECK POSITION
+      //alert(checkNeighbours(i,j)) //CHECK VALUE
+      var neighbours = checkNeighbours(i,j);
+      if(neighbours < 2){ mirror[i][j] = 0};
+      if(neighbours > 3){ mirror[i][j] = 0};
+      if(neighbours == 3){ mirror[i][j] = 1};    
     };
   };
+  mirroring(mirror);
+  printMatrix(matrix);  
+  setTimeout(function(){startGame(matrix)},2000); // 2000ms = 2s
 };
 
 function checkNeighbours(i,j){
@@ -138,3 +151,10 @@ function checkNeighbours(i,j){
   return n;
 };
 
+function mirroring(mirror){
+  for (var i = 0; i < matrix.length; i++){
+    for (var j = 0; j < matrix[0].length; j++){
+      matrix[i][j] = mirror[i][j];
+    };
+  };
+};
