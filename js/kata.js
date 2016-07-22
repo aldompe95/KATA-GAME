@@ -73,3 +73,17 @@ function activeCell(x,y){
   }
   printMatrix(matrix);
 };
+
+function StartGame(matrix){
+  for (var i = 0; i < y; i++){
+    for (var j = 0; j < x; j++){
+      // send i, j to another function
+    };
+  };
+};
+
+function checkNeighbours(x,y){
+  //Continue here
+
+}
+
