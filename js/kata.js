@@ -8,18 +8,18 @@ function isNumber(evt){
   var charCode = (evt.which) ? evt.which : evt.keyCode;
   if (charCode > 31 && (charCode < 48 || charCode > 57)){
     return false;
-  };
+  }
   return true;
-};
+}
 
 function maxNumber(number){
   if (number <= 25) {
     var a = true;
   }else{
     var a = false;
-  };
+  }
   return a;
-};
+}
 
 function createWorld(){
   active = true;
@@ -28,10 +28,10 @@ function createWorld(){
   if (maxNumber(rows) == false || maxNumber(columns) == false ){
     alert("Max 25");
     return false;
-  };
+  }
   createMatrix(rows,columns);
   return false; //PreventDefault
-};
+}
 
 function createMatrix(y,x){
   var e = eval;
@@ -46,9 +46,9 @@ function createMatrix(y,x){
     };
     e("matrix["+i+"] = matrix"+i); //Fill matrix
     e("mirror["+i+"] = matrix"+i);  //Fill array
-  };
+  }
   printMatrix(matrix);
-};
+}
 
 function printMatrix(matrix){
   var html = "<table>";
@@ -59,15 +59,15 @@ function printMatrix(matrix){
         html += "<td class='cell' onclick='activeCell("+i+","+j+","+active+")'>" + matrix[i][j]+"</td>";
       }else if(matrix[i][j] == 1){
         html += "<td class='cell active' onclick='activeCell("+i+","+j+","+active+")'>" + matrix[i][j]+"</td>";
-      };
+      }
       //html += "<td class='cell'>" + "matrix["+i+"]["+j+"]</td>"; Here you can check the position [?][?]
-    };
+    }
     html += "</tr>";
-  };
+  }
   html += "</table>";
   html += " <button onclick='startGame(matrix)' type='button'>PLAY</button>";
   document.querySelector(".world").innerHTML = html;
-};
+}
 
 function activeCell(x,y,active){
   if(active == true){
@@ -75,10 +75,10 @@ function activeCell(x,y,active){
       matrix[x][y] = 1;
     }else if(matrix[x][y] == 1){
       matrix[x][y] = 0;
-    };
+    }
     printMatrix(matrix);
-  };
-};
+  }
+}
 
 function startGame(matrix){
   active = false; // You cant active cells anymore
@@ -90,12 +90,12 @@ function startGame(matrix){
       if(neighbours < 2){mirror[i][j] = 0};
       if(neighbours > 3){mirror[i][j] = 0};
       if(neighbours == 3){mirror[i][j] = 1};    
-    };
-  };
+    }
+  }
   mirroring(mirror);
   printMatrix(matrix);  
   setTimeout(function(){startGame(matrix)},2000); // 2000ms = 2s
-};
+}
 
 function checkNeighbours(i,j){
   var n = 0;
@@ -103,59 +103,59 @@ function checkNeighbours(i,j){
   if (j - 1 >= 0){
     if (matrix[i][j-1] == 1){
       n += 1;
-    };
-  };
+    }
+  }
   //RIGHT
   if (j + 1 < matrix[0].length){
     if (matrix[i][j+1] == 1){
       n += 1; 
-    };
-  };
+    }
+  }
   //TOP
   if(i - 1 >= 0){
     if(matrix[i-1][j] == 1){
       n += 1;
-    };
+    }
     var a = i-1;
     //TOP-LEFT                    
     if(j - 1 >= 0){
       if(matrix[a][j-1] == 1){
         n += 1;
-      };
-    };
+      }
+    }
     //TOP-RIGHT
     if(j + 1 < matrix[0].length){
       if(matrix[a][j+1] == 1){
         n += 1;
-      };
-    };
-  };
+      }
+    }
+  }
   //LOWER
   if(i + 1 < matrix.length){
     if(matrix[i+1][j] == 1){
       n += 1;
-    };
+    }
     var b = i + 1;
     //LOWER LEFT
     if(j - 1 >= 0){
       if(matrix[b][j-1] == 1){
         n += 1;
-      };
-    };
+      }
+    }
     //LOWER-RIGHT
     if(j + 1 < matrix[0].length){
       if(matrix[b][j+1] == 1){
         n += 1;
-      };
-    };
-  };
+      }
+    }
+  }
   return n;
-};
+}
 
 function mirroring(mirror){
   for (var i = 0; i < matrix.length; i++){
     for (var j = 0; j < matrix[0].length; j++){
       matrix[i][j] = mirror[i][j];
-    };
-  };
-};
+    }
+  }
+}
