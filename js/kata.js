@@ -65,6 +65,7 @@ function printMatrix(matrix){
     html += "</tr>";
   };
   html += "</table>";
+  html += " <button onclick='startGame(matrix)' type='button'>PLAY</button>";
   document.querySelector(".world").innerHTML = html;
 };
 
