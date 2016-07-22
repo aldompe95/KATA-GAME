@@ -16,7 +16,7 @@ function maxNumber(number){
   if (number <= 25) {
     var a = true;
   }else{
-    var a = false;
+    a = false;
   }
   return a;
 }
@@ -89,11 +89,11 @@ function startGame(matrix){
       var neighbours = checkNeighbours(i,j);
       if(neighbours < 2){mirror[i][j] = 0};
       if(neighbours > 3){mirror[i][j] = 0};
-      if(neighbours == 3){mirror[i][j] = 1};    
+      if(neighbours == 3){mirror[i][j] = 1};
     }
   }
   mirroring(mirror);
-  printMatrix(matrix);  
+  printMatrix(matrix);
   setTimeout(function(){startGame(matrix)},2000); // 2000ms = 2s
 }
 
@@ -108,7 +108,7 @@ function checkNeighbours(i,j){
   //RIGHT
   if (j + 1 < matrix[0].length){
     if (matrix[i][j+1] == 1){
-      n += 1; 
+      n += 1;
     }
   }
   //TOP
@@ -117,7 +117,7 @@ function checkNeighbours(i,j){
       n += 1;
     }
     var a = i-1;
-    //TOP-LEFT                    
+    //TOP-LEFT
     if(j - 1 >= 0){
       if(matrix[a][j-1] == 1){
         n += 1;
