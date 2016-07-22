@@ -53,9 +53,9 @@ function printMatrix(matrix){
     html += "<tr>";
     for (var j = 0; j < matrix[0].length; j++){
       if (matrix[i][j] == 0 ){
-        html += "<td class='cell'>" + matrix[i][j]+"</td>";
+        html += "<td class='cell' onclick='activeCell("+i+","+j+")'>" + matrix[i][j]+"</td>";
       }else if(matrix[i][j] == 1){
-        html += "<td class='cell active' onclick=''>" + matrix[i][j]+"</td>";
+        html += "<td class='cell active' onclick='activeCell("+i+","+j+")'>" + matrix[i][j]+"</td>";
       };
       //html += "<td class='cell'>" + "matrix["+i+"]["+j+"]</td>"; Here you can check the position [?][?]
     };
@@ -65,3 +65,11 @@ function printMatrix(matrix){
   document.querySelector(".world").innerHTML = html;
 };
 
+function activeCell(x,y){
+  if (matrix[x][y] == 0){
+    matrix[x][y] = 1;
+  }else if(matrix[x][y] == 1){
+    matrix[x][y] = 0;
+  }
+  printMatrix(matrix);
+};

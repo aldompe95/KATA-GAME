@@ -1,8 +1,16 @@
-table {
+table{
   border: 1px solid black;
 }
-td {
+td{
   text-align: left;
   border: 1px solid black;
   width:20px;
+}
+.cell{
+  cursor: pointer;
+  color: #fff;
+}
+.active{
+  background-color: green;
+  color: green;
 }
